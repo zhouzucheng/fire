@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xml:lang="zh"><Esri><CreaDate>20250204</CreaDate><CreaTime>22302900</CreaTime><ArcGISFormat>1.0</ArcGISFormat><SyncOnce>TRUE</SyncOnce><DataProperties><lineage><Process ToolSource="d:\arcgis 10.8\lujing\desktop10.8\ArcToolbox\Toolboxes\Spatial Analyst Tools.tbx\RasterCalculator" Date="20250204" Time="223029">RasterCalculator Con(IsNull("burn.tif"),0,"burn.tif") D:\桌面\毕业论文终稿以及设计\数据\楚雄彝族自治州武定县\影响因子数据\火烧迹地\burned</Process></lineage></DataProperties></Esri></metadata>
