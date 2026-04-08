@@ -118,7 +118,7 @@ print("Model saved to 'data/transformer_model.pth'.")
 os.makedirs("images", exist_ok=True)
 timestamp = time.strftime("%Y%m%d-%H%M%S")
 
-# 绘制损失函数图
+
 plt.figure(figsize=(10, 5))
 plt.plot(range(1, len(train_losses) + 1), train_losses, label="Training Loss", color="blue")
 plt.xlabel("Epochs")
