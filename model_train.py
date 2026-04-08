@@ -7,16 +7,11 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
-# ================================
-# 1. 数据准备
-# ================================
 
-# 读取 CSV 数据
-csv_file = "../Data/wuding.csv"  # 替换为你的文件路径
+csv_file = "../Data/wuding.csv"
 data_sample = pd.read_csv(csv_file)
 data = data_sample.sample(frac=0.5, random_state=42)
 
-# 数据清理：移除无效值
 data = data[(data['dem'] != -9999) &
             (data['slope'] != -9999) &
             (data['aspect'] != -9999) &
@@ -26,28 +21,21 @@ data = data[(data['dem'] != -9999) &
             (data['tem'] != -9999) &
             (data['burned'] != -9999)]
 
-# 提取特征和标签
 X = data[['dem', 'aspect', 'slope', 'landcover','ndvi','rhu','tem']].values
 y = data['burned'].values
 
-# 标准化特征
 scaler = StandardScaler()
 X = scaler.fit_transform(X)
 
-# 划分训练集和测试集
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.8, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# 转换为 PyTorch 张量
 X_train = torch.tensor(X_train, dtype=torch.float32)
 y_train = torch.tensor(y_train, dtype=torch.float32)
 X_test = torch.tensor(X_test, dtype=torch.float32)
 y_test = torch.tensor(y_test, dtype=torch.float32)
 
-# ================================
-# 2. 模型超参数定义
-# ================================
 
-input_dim = X_train.shape[1]  # 输入特征的维度
+input_dim = X_train.shape[1]
 d_model = 64
 nhead = 4
 num_layers = 2
@@ -56,9 +44,6 @@ learning_rate = 0.001
 batch_size = 64
 epochs = 50
 
-# ================================
-# 3. Transformer 模型定义
-# ================================
 
 class TransformerModel(nn.Module):
     def __init__(self, input_dim, d_model, nhead, num_layers, dropout):
@@ -78,19 +63,13 @@ class TransformerModel(nn.Module):
         return self.sigmoid(x)
 
 
-# 初始化模型
+
 model = TransformerModel(input_dim, d_model, nhead, num_layers, dropout)
 
-# ================================
-# 4. 定义损失函数与优化器
-# ================================
 
 criterion = nn.BCELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
-# ================================
-# 5. 模型训练
-# ================================
 
 train_losses = []
 train_accuracies = []
@@ -127,9 +106,6 @@ def train_model_with_plot(model, X_train, y_train, epochs, batch_size):
 
 train_model_with_plot(model, X_train, y_train, epochs, batch_size)
 
-# ================================
-# 6. 测试模型
-# ================================
 
 def test_model(model, X_test, y_test):
     model.eval()
@@ -143,17 +119,10 @@ def test_model(model, X_test, y_test):
 
 probabilities = test_model(model, X_test, y_test)
 
-# ================================
-# 7. 保存模型
-# ================================
 
 os.makedirs("data", exist_ok=True)
 torch.save(model.state_dict(), "data/transformer_model.pth")
 print("Model saved to 'data/transformer_model.pth'.")
-
-# ================================
-# 8. 保存图片
-# ================================
 
 os.makedirs("images", exist_ok=True)
 timestamp = time.strftime("%Y%m%d-%H%M%S")
