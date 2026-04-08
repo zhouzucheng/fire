@@ -21,7 +21,6 @@ plt.plot(fpr1, tpr1, color='blue', lw=2, label='Transformer (AUC = %0.2f)' % roc
 plt.plot(fpr3, tpr3, color='red', lw=2, label='LSSVM (AUC= %0.2f)' % roc_auc3)
 # plt.plot(fpr2, tpr2, color='green', lw=2, label='ChuXiong (AUC = %0.2f)' % roc_auc2)
 
-
 plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
 plt.xlim([0.0, 1.0])
 plt.ylim([0.0, 1.05])

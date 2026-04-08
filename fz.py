@@ -8,7 +8,6 @@ with rasterio.open('../Data/zzz_burned.tif') as src:
 
 flipped_data = np.flipud(data)
 
-
 profile.update(dtype=rasterio.uint8, count=1)
 
 with rasterio.open('../Data/flipped_raster.tif', 'w', **profile) as dst:

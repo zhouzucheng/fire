@@ -116,7 +116,6 @@ def test_model(model, X_test, y_test):
         print(f"Test Accuracy: {accuracy.item() * 100:.2f}%")
     return outputs
 
-
 probabilities = test_model(model, X_test, y_test)
 
 os.makedirs("data", exist_ok=True)

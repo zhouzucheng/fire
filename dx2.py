@@ -23,4 +23,3 @@ with rasterio.open(file1_path) as raster1, rasterio.open(file2_path) as raster2:
 
     with rasterio.open('../Data/dx3.tif', 'w', **new_raster_meta) as new_raster:
         new_raster.write(difference, 1)
-
