@@ -119,7 +119,6 @@ def test_model(model, X_test, y_test):
 
 probabilities = test_model(model, X_test, y_test)
 
-
 os.makedirs("data", exist_ok=True)
 torch.save(model.state_dict(), "data/transformer_model.pth")
 print("Model saved to 'data/transformer_model.pth'.")

@@ -133,5 +133,4 @@ plt.title('../Transformer/SHAP Sorted Feature Importance')
 plt.tight_layout()
 
 plt.savefig(f'../Transformer/images/shap/SHAP_Feature_Importance_{timestamp}.png', format='png', bbox_inches='tight')
-
 plt.show()

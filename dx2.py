@@ -17,7 +17,6 @@ with rasterio.open(file1_path) as raster1, rasterio.open(file2_path) as raster2:
 
     difference = np.subtract(data1, data2)
 
-
     new_raster_meta = raster1.meta.copy()
     new_raster_meta.update(dtype=rasterio.int8)
 

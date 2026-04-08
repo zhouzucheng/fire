@@ -13,7 +13,6 @@ y_true3 = df3['burned']
 
 fpr1, tpr1, _ = roc_curve(y_true1, y_pred1)
 roc_auc1 = auc(fpr1, tpr1)
-
 fpr3, tpr3, _ = roc_curve(y_true3, y_pred3)
 roc_auc3 = auc(fpr3, tpr3)
 
