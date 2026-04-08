@@ -1,7 +1,6 @@
 import rasterio
 import numpy as np
 
-
 with rasterio.open('../Data/zzz_lssvm.tif') as predict_src:
     predict_data = predict_src.read(1)
     profile = predict_src.profile
