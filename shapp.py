@@ -11,12 +11,11 @@ import os
 from datetime import datetime
 
 csv_file = '../Transformer/data/transformer_predict.csv'
-df = pd.read_csv(csv_file,nrows=200)
+df = pd.read_csv(csv_file)
 
-df = df[df[['dem', 'aspect', 'slope', 'landcover', 'ndvi', 'rhu', 'tem', 'burned']].notnull().all(axis=1)]
 
-X = df[['dem', 'slope', 'aspect', 'landcover',  'ndvi', 'rhu', 'tem']]  # 特征
-y = df['burned']  # 标签
+y = df.iloc[:, 0]
+X = df.iloc[:, 1:]
 
 
 scaler = StandardScaler()

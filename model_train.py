@@ -12,17 +12,10 @@ csv_file = "../Data/wuding.csv"
 data_sample = pd.read_csv(csv_file)
 data = data_sample.sample(frac=0.5, random_state=42)
 
-data = data[(data['dem'] != -9999) &
-            (data['slope'] != -9999) &
-            (data['aspect'] != -9999) &
-            (data['landcover'] != -9999) &
-            (data['ndvi'] != -9999) &
-            (data['rhu'] != -9999) &
-            (data['tem'] != -9999) &
-            (data['burned'] != -9999)]
 
-X = data[['dem', 'aspect', 'slope', 'landcover','ndvi','rhu','tem']].values
-y = data['burned'].values
+
+y = data.iloc[:, 0].values
+X = data.iloc[:, 1:].values
 
 scaler = StandardScaler()
 X = scaler.fit_transform(X)
